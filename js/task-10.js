@@ -14,9 +14,8 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-function createBoxes(amount) {
+function createBoxes(amount, value) {
   const elements = [];
-  let value = 30;
   for (let i = 0; i < amount; i += 1) {
     const element = document.createElement("div");
     element.style.backgroundColor = getRandomHexColor();
@@ -33,6 +32,10 @@ function destroyBoxes() {
 }
 
 function onBtnCreateClick() {
-  destroyBoxes();
-  refs.boxes.append(...createBoxes(refs.controls.firstElementChild.value));
+  const lastCild = refs.boxes.children[refs.boxes.children.length - 1];
+  let value = 30;
+  if (lastCild !== undefined){
+    value = Number.parseInt(lastCild.style.width) + 10;
+  } 
+  refs.boxes.append(...createBoxes(refs.controls.firstElementChild.value, value));
 }

@@ -17,17 +17,14 @@ const refs = {
   gallery: document.querySelector(".gallery"),
 };
 
-const createGalleryCards = function (elements) {
+refs.gallery.insertAdjacentHTML("beforeend", createGalleryCards(images));
+
+function createGalleryCards(elements) {
   const cards = [];
   elements.forEach((element) => {
-    const item = document.createElement("li");
-    const img = `<img src=${element.url} alt=${element.alt}>`;
-    item.insertAdjacentHTML("beforeend", img);
-    console.log(item);
+    const item = `<li><img src=${element.url} alt=${element.alt}></li>`;
     cards.push(item);
   });
   console.log(cards);
   return cards;
-};
-
-refs.gallery.append(...createGalleryCards(images))
+}
